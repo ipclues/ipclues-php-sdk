@@ -1,0 +1,28 @@
+{
+    "name": "ipclues/sdk",
+    "description": "Official PHP SDK for IPClues API",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "IPClues\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rufai Limantawa",
+            "email": "rufailimantawa@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "dev-master"
+    },
+    "scripts": {
+        "fmt": "php-cs-fixer fix --verbose",
+        "fmt:check": "php-cs-fixer fix --verbose --dry-run"
+    }
+}
