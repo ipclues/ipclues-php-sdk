@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IPClues;
+namespace IPClues\Sdk;
 
-use IPClues\Throws\ApiException;
-use IPClues\Throws\AuthenticationException;
-use IPClues\Throws\IPCluesException;
-use IPClues\Throws\RateLimitException;
+use IPClues\Sdk\Throws\IPCluesException;
 
 final class HttpClient
 {
@@ -127,14 +124,17 @@ final class HttpClient
             }
 
             if (401 === $statusCode || 403 === $statusCode) {
-                throw new AuthenticationException(
+                throw new IPCluesException(
                     'API authentication failed.',
                     $statusCode,
                 );
             }
 
             if (429 === $statusCode) {
-                throw new RateLimitException();
+                throw new IPCluesException(
+                    'API rate limit exceeded.',
+                    $statusCode,
+                );
             }
 
             if ($statusCode < 200 || $statusCode >= 300) {
@@ -142,7 +142,7 @@ final class HttpClient
                     ? ($response['message'] ?? 'API request failed.')
                     : 'API request failed.';
 
-                throw new ApiException(
+                throw new IPCluesException(
                     \is_string($message)
                         ? $message
                         : 'API request failed.',

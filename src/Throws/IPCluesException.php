@@ -1,5 +1,5 @@
 <?php
 
-namespace IPClues\Throws;
+namespace IPClues\Sdk\Throws;
 
 class IPCluesException extends \RuntimeException {}
