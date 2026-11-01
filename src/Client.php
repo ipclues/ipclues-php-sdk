@@ -83,6 +83,7 @@ final class Client
             CURLOPT_HTTPHEADER => [
                 "Authorization: Bearer {$this->apiKey}",
                 'Accept: application/json',
+                'User-Agent: '.UserAgent::get(),
             ],
             CURLOPT_HEADERFUNCTION => static function ($curl, string $line) use (
                 &$headers,
